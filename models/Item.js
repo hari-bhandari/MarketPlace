@@ -4,7 +4,7 @@ const MongooseSchema=new mongoose.Schema({
         type:String,
         required:[true,'The Item you are selling requires a name']
     },
-    name:{
+    price:{
         type:Number,
         required:[true,'The Item you are selling requires a price']
     },
@@ -13,6 +13,11 @@ const MongooseSchema=new mongoose.Schema({
     },
     location:{
         type:String
+    },
+    user:{
+        type:mongoose.Schema.ObjectID,
+        ref:'User',
+        required:true
     }
 
 
