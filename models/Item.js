@@ -10,6 +10,9 @@ const MongooseSchema=new mongoose.Schema({
     },
     description:{
         type:String
+    },
+    location:{
+        type:String
     }
 
 
