@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+const slugify=require('slugify')
 const ItemSchema=new mongoose.Schema({
     name:{
         type:String,
@@ -15,11 +16,20 @@ const ItemSchema=new mongoose.Schema({
         type:String
     },
     user:{
-        type:mongoose.Schema.ObjectID,
+        type:mongoose.Schema.ObjectId,
         ref:'User',
         required:true
+    },
+    slug:{
+        type:String,
+        unique:true
     }
 
 
 })
+// ItemSchema.pre('save',function (next) {
+//     this.slug=slugify(this.name,{lower:true})
+//     next();
+//
+// })
 module.exports=mongoose.model('Item',ItemSchema)

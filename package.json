@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -22,6 +23,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.20",
     "path": "^0.12.7",
+    "slugify": "^1.4.2",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {

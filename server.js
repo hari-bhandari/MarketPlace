@@ -10,11 +10,11 @@ const cors=require('cors')
 const mongoSanitize=require('express-mongo-sanitize')
 const path=require('path')
 //importing files
-const connectDB=require('./config/config.env')
+const connectDB=require('./config/db')
 const errorHandler=require('./middlewares/error')
 //importing routes
 const auth=require('./Routes/auth')
-const item=require('./Routes/item')
+// const item=require('./Routes/item')
 ////////////////////////////////////////////////
 
 
@@ -51,7 +51,7 @@ app.use(cors())
 //making images static
 app.use(express.static(path.join(__dirname,'public')))
 //routes
-app.use('/item',item)
+// app.use('/item',item)
 app.use('/auth',auth)
 //error handler
 ////////////////////////////////////////////////
