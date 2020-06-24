@@ -13,12 +13,14 @@ exports.getItems=asyncHandler(async(req,res,next)=>{
 //@route POST /items
 //@access Private
 exports.addItem=asyncHandler(async (req,res,next)=>{
-    const {name,price,description,location}=req.body;
+    // add user to req.body
+    req.body.user=req.user.id
+
 
     //Create a item
-    const item=await Item.create({
-        name,price,description,location
-    });
+    const item=await Item.create(
+        req.body
+    );
     res.status(201).send({success:true,item:item})
 
 })//@desc remove a item
