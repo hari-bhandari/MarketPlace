@@ -1,6 +1,13 @@
 const Item=require('../models/Item');
-const asyncHandler=require('../middleware/async');
+const asyncHandler=require('../middlewares/async');
 const ErrorResponse=require('../utils/errorResponse');
+
+//@desc Get all bootcamps
+//@route GET /
+//@access
+exports.getItems=asyncHandler(async(req,res,next)=>{
+    res.status(200).json(res.advancedResults)
+})
 
 //@desc add a item
 //@route POST /items
@@ -36,7 +43,7 @@ exports.removeItem=asyncHandler(async (req,res,next)=>{
 //@desc update a item
 //@route PUT /item:id
 //@access private
-exports.updateBootcamp= asyncHandler(async (req,res,next)=>{
+exports.updateItem= asyncHandler(async (req,res,next)=>{
     let item=await Item.findById(req.params.id);
     if(!item){
         return next(new ErrorResponse(`item not found with id of ${req.params.id}`,404));

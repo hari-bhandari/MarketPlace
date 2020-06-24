@@ -1,5 +1,5 @@
 const User=require('../models/User');
-const asyncHandler=require('../middleware/async');
+const asyncHandler=require('../middlewares/async');
 const ErrorResponse=require('../utils/errorResponse');
 
 //@desc register a user

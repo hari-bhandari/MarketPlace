@@ -3,7 +3,7 @@ const {register,login,getMe,forgotPassword,resetPassword,updateDetails,updatePas
 
 const router=express.Router();
 
-const {protect}=require('../middleware/auth')
+const {protect}=require('../middlewares/auth')
 
 router.route('/register').post(register);
 router.route('/login').post(login)

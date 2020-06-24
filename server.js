@@ -8,7 +8,13 @@ const rateLimit=require('express-rate-limit');
 const hpp=require('hpp')
 const cors=require('cors')
 const mongoSanitize=require('express-mongo-sanitize')
-
+const path=require('path')
+//importing files
+const connectDB=require('./config/config.env')
+const errorHandler=require('./middlewares/error')
+//importing routes
+const auth=require('./Routes/auth')
+const item=require('./Routes/item')
 ////////////////////////////////////////////////
 
 
@@ -19,6 +25,8 @@ dotenv.config({path:'./config/config.env'})
 ////////////////////////////////////////////////
 
 const app=express()
+//connect to database
+connectDB()
 ///////////init middlewares//////////////////////
 
 app.use(express.json())
@@ -28,9 +36,26 @@ app.use(fileUpload())
 app.use(helmet())
 //santitize data
 app.use(mongoSanitize())
+//xss
+app.use(xss())
+//limit rate
+    const Limiter=rateLimit({
+        windowsMs:10*1000*60,
+        max:100
+    })
+app.use(Limiter)
+//prevent http param pollution
+app.use(hpp())
+//enable cors
+app.use(cors())
+//making images static
+app.use(express.static(path.join(__dirname,'public')))
+//routes
+app.use('/item',item)
+app.use('/auth',auth)
+//error handler
 ////////////////////////////////////////////////
-
-
+app.use(errorHandler)
 const PORT=process.env.PORT||5000
 app.get('/',(req,res)=>{
     res.send('Welcome to the market place')

@@ -1,0 +1,10 @@
+const express=require('express')
+const router=express.Router()
+const {addItem,removeItem,updateItem,getItems,uploadPhoto} =require('../controllers/items')
+const advancedResults=require('../middlewares/advancedResult')
+const {protect,authorize}=require('../middlewares/auth')
+const Item=require('../models/Item')
+router.route('/').get(advancedResults(Item),getItems).post(protect,authorize('publisher','admin'),addItem)
+router.route('/:id').delete(protect,authorize('publisher','admin'),removeItem).put(protect,authorize('publisher','admin'),updateItem)
+router.route('/:id/photo').put(protect,authorize('publisher','admin'),uploadPhoto)
+module.exports=router
