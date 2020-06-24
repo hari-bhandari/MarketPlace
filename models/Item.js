@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-const MongooseSchema=new mongoose.Schema({
+const ItemSchema=new mongoose.Schema({
     name:{
         type:String,
         required:[true,'The Item you are selling requires a name']
@@ -22,3 +22,4 @@ const MongooseSchema=new mongoose.Schema({
 
 
 })
+module.exports=mongoose.model('Item',ItemSchema)
